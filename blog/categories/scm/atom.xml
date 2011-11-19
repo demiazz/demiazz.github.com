@@ -1,97 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>A successfull Git branching model - Demiazz Harbor</title>
-  <meta name="author" content="Алексей Плуталов">
-
-  
-  <meta name="description" content="Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Demiazz Harbor" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Demiazz Harbor</a></h1>
-  
-    <h2>Путанные гиковские мысли о веб-разработке, и вообще.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="Подписаться на RSS">RSS</a></li>
-  
-</ul>
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:demiazz.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Поиск"/>
-  </fieldset>
-</form>
-<ul class="main-navigation">
-  <li><a href="/">Блог</a></li>
-  <li><a href="/blog/archives">Архив</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+  <title><![CDATA[Category: scm | Demiazz Harbor]]></title>
+  <link href="http://demiazz.github.com/blog/categories/scm/atom.xml" rel="self"/>
+  <link href="http://demiazz.github.com/"/>
+  <updated>2011-11-19T18:59:56+04:00</updated>
+  <id>http://demiazz.github.com/</id>
+  <author>
+    <name><![CDATA[Алексей Плуталов]]></name>
     
-      <h1 class="entry-title">A Successfull Git Branching Model</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-
-<time datetime="2011-11-19T15:25:00+04:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
-        
-         | <a href="#disqus_thread">Комментарии</a>
-        
-      </p>
-    
-  </header>
-
-
-<div class="entry-content"><p>Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование более удобных и простых подходов к организации работы с исходным кодом, и его контролю.</p>
+  <entry>
+    <title type="html"><![CDATA[A successfull Git branching model]]></title>
+    <link href="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/"/>
+    <updated>2011-11-19T15:25:00+04:00</updated>
+    <id>http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model</id>
+    <content type="html"><![CDATA[<p>Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование более удобных и простых подходов к организации работы с исходным кодом, и его контролю.</p>
 
 <p>Еще в начале 2010 года, Vincent Driessen написал статью, в которой описал опыт использования Git, и обобщил свой опыт в виде модели использования веток при организации хранения кода под управлением Git.</p>
 
@@ -169,7 +96,7 @@
 
 <p><em>(Оригинальные названия типов веток сохранены намерено, во измежание путаницы в переводе. Прим. перев.)</em></p>
 
-<p>Каждый из этих типов веток имеет конкретные цели и правила работы с ними. Для них строго определены те ветки, от которых можно произвести ветвление, и с какими ветками должны быть объединены. И опять же, во избежание введения в заблуждение, стоит оговориться, что эти ветки никак не являются &#8220;специальными&#8221; с технической точки зрения. Это обычные ветки Git. Их типизация зависит от правил, которые придерживаются при работе с ними.</p>
+<p>Каждый из этих типов веток имеет конкретные цели и правила работы с ними. Для них строго определены те ветки, от которых можно произвести ветвление, и с какими ветками должны быть объединены. И опять же, во избежание введения в заблуждение, стоит оговориться, что эти ветки никак не являются "специальными" с технической точки зрения. Это обычные ветки Git. Их типизация зависит от правил, которые придерживаются при работе с ними.</p>
 
 <h3>Ветки <code>feature</code></h3>
 
@@ -190,13 +117,12 @@
 
 <p>Для создания ветки <code>feature</code>:</p>
 
-<figure class='code'><figcaption><span>Создание ветки `feature`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание ветки <code>feature</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout -b myfeature develop
 </span><span class='line'>Switched to a new branch <span class="s2">&quot;myfeature&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>При создании ветки <code>feature</code> ветвление осуществляется от <code>develop</code>.</p>
 
@@ -204,7 +130,7 @@
 
 <p>Законченный функционал может быть объединен обратно с веткой <code>develop</code> для добавления его в следующий релиз:</p>
 
-<figure class='code'><figcaption><span>Слияние `feature` ветки в `develop`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Слияние <code>feature</code> ветки в <code>develop</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -221,23 +147,21 @@
 </span><span class='line'><span class="nv">$ </span>git branch -d myfeature
 </span><span class='line'>Deleted branch myfeature <span class="o">(</span>was 05e9557<span class="o">)</span>.
 </span><span class='line'><span class="nv">$ </span>git push origin develop
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Использование флага <code>--no-ff</code> создает новый коммит, который содержит все изменения сливаемой ветки. Это позволяет избежать потери информации о существовании ветки, в которой велась разработка добавленного функционала. Для сравнения, взгляните на изображение ниже. Слева слияние с использованием флага <code>--no-ff</code>, справа без него:</p>
 
 <p><img class="center" src="/images/posts/a-successful-git-branching-model/5.png" title="Сравнение слияния веток с флагом --no-ff и без" ></p>
 
-<p>Как видно, если не указать флаг &#8211;no-ff, изменения которые делались в ветке <code>feature</code>, невозможно будет увидеть. Это чревато тем, что для того, чтобы увидеть все изменения сделанные в ветке <code>feature</code>, придется перечитать все сообщения журнала, и выбирать именно те коммиты, которые касаются интересующих изменений. Отмена изменений ветки <code>feature</code> также становится настоящей головной болью, тогда как <code>--no-ff</code> упрощает эту задачу, ведь откатить придется всего лишь один коммит. Хотя именно такое поведение более предпочтительною</p>
+<p>Как видно, если не указать флаг --no-ff, изменения которые делались в ветке <code>feature</code>, невозможно будет увидеть. Это чревато тем, что для того, чтобы увидеть все изменения сделанные в ветке <code>feature</code>, придется перечитать все сообщения журнала, и выбирать именно те коммиты, которые касаются интересующих изменений. Отмена изменений ветки <code>feature</code> также становится настоящей головной болью, тогда как <code>--no-ff</code> упрощает эту задачу, ведь откатить придется всего лишь один коммит. Хотя именно такое поведение более предпочтительною</p>
 
 <p><em>Для установки такого поведения слияния по умолчанию, можно заставить Git использовать <code>--no-ff</code> по умолчанию, путем правки <code>.gitconfig</code>, и добавления следующих строк:</em></p>
 
-<figure class='code'><figcaption><span>Включение &#8211;no-ff по умолчанию  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Включение --no-ff по умолчанию  </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>[alias]
-</span><span class='line'>merge=merge --no-ff</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'>merge=merge --no-ff</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Ветки <code>release</code></h3>
 
@@ -260,7 +184,7 @@
 
 <p>Ветки <code>release</code> создаются ветвлением от <code>develop</code>. Создание такой ветки покажем на примере. Пускай версия <code>1.1.5</code> - это текущий production релиз, и мы приближаемся к следующему большому релизу. Состояние ветки <code>develop</code> говорит о готовности к следующему релизу, и мы решили, что это будет <code>1.2</code>, а не <code>1.1.6</code> или <code>2.0</code>. Теперь, мы создаем ветку, и даем ей имя отображающее номер релиза:</p>
 
-<figure class='code'><figcaption><span>Создание ветки `release`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание ветки <code>release</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -275,8 +199,7 @@
 </span><span class='line'><span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Bumped version number to 1.2&quot;</span>
 </span><span class='line'><span class="o">[</span>release-1.2 74d9424<span class="o">]</span> Bumped version number to 1.2
 </span><span class='line'>1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 1 deletions<span class="o">(</span>-<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>После создания новой ветки, и переключения на нее, мы изменяем везде номер версии на новый. К примеру это могут быть номера версии в исходных файлах проекта, в параметрах сборки executable файла, или еще что-то. В примере выше, это автоматизировано, и для этой цели используется вымышленный скрипт bump-version.sh, который производит нужные изменения в файлах рабочей директории, для отображения состояния новой версии. Это конечно может быть произведено и в ручную. В нашем примере, мы используем некий абстрактный проект. После этого заносим изменения в RB.</p>
 
@@ -290,7 +213,7 @@
 
 <p>Первые два шага в Git:</p>
 
-<figure class='code'><figcaption><span>Выпуск релиза  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Выпуск релиза  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -303,14 +226,13 @@
 </span><span class='line'>Merge made by recursive.
 </span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
 </span><span class='line'><span class="nv">$ </span>git tag -a 1.2
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Релиз выпущен, и помечен для будущего использования.</p>
 
 <p>Для того, чтобы сохранить изменения сделаные в ветке <code>release</code>, нужно слить их обратно в <code>develop</code>:</p>
 
-<figure class='code'><figcaption><span>Слияние `release` ветки в `develop`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Слияние <code>release</code> ветки в <code>develop</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -321,24 +243,22 @@
 </span><span class='line'><span class="nv">$ </span>git merge --no-ff release-1.2
 </span><span class='line'>Merge made by recursive.
 </span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Этот шаг может привести к конфликтам во время слияния. Если такое произойдет, то следует исправить конфликты, и зафиксировать изменения.</p>
 
 <p>Теперь релиз полностью выпущен, и <code>release</code> ветка может быть удалена, так как она нам больше не нужна:</p>
 
-<figure class='code'><figcaption><span>Удаление ветки `release`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Удаление ветки <code>release</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git branch -d release-1.2
 </span><span class='line'>Deleted branch release-1.2 <span class="o">(</span>was ff452fe<span class="o">)</span>.
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Ветки <code>hotfix</code></h3>
 
-<p><img class="right" src="/images/posts/a-successful-git-branching-model/6.png" title="Ветки `hotfix`" ></p>
+<p><img class="right /images/posts/a-successful-git-branching-model/6.png Ветки" src="<code>hotfix</code>"></p>
 
 <p>Правила ветвления, слияния и именования:</p>
 
@@ -357,7 +277,7 @@
 
 <p>Ветка <code>hotfix</code> создается ветвлением от ветки <code>master</code>. Рассмотрим небольшой пример. Допустим, версия <code>1.2</code> является текущей production версией, которая сейчас используется и вызывает проблемы из-за нескольких досадных и неприятных ошибок в коде. Изменения в ветке <code>develop</code> пока нестабильные, чтобы делать новый релиз. В таком случае, мы ветвлением от <code>master</code> создает ветку <code>hotfix</code> и начинаем исправлять ошибку в рамках этой ветки:</p>
 
-<figure class='code'><figcaption><span>Создание ветки `hotfix`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание ветки <code>hotfix</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -372,22 +292,20 @@
 </span><span class='line'><span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Bumped version number to 1.2.1&quot;</span>
 </span><span class='line'><span class="o">[</span>hotfix-1.2.1 41e61bb<span class="o">]</span> Bumped version number to 1.2.1
 </span><span class='line'>1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 1 deletions<span class="o">(</span>-<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Не забывайте применить изменения версии после ответвления!</p>
 
 <p>После, исправляем ошибку и фиксируем исправление одним или несколькими коммитами.</p>
 
-<figure class='code'><figcaption><span>Фиксация изменений  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Фиксация изменений  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git commit -m <span class="s2">&quot;Fixed severe production problem&quot;</span>
 </span><span class='line'><span class="o">[</span>hotfix-1.2.1 abbe5d6<span class="o">]</span> Fixed severe production problem
 </span><span class='line'>5 files changed, 32 insertions<span class="o">(</span>+<span class="o">)</span>, 17 deletions<span class="o">(</span>-<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h4>Закрытие ветки <code>hotfix</code> и выпуск внеочередного релиза</h4>
 
@@ -395,7 +313,7 @@
 
 <p>Обновим ветку <code>master</code> и тег релиза.</p>
 
-<figure class='code'><figcaption><span>Обновление `master` и тега релиза  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Обновление <code>master</code> и тега релиза  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -408,12 +326,11 @@
 </span><span class='line'>Merge made by recursive.
 </span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
 </span><span class='line'><span class="nv">$ </span>git tag -a 1.2.1
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Затем, занесем исправление в ветку <code>develop</code>:</p>
 
-<figure class='code'><figcaption><span>Занесение изменений в ветку `develop`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Занесение изменений в ветку <code>develop</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -424,196 +341,23 @@
 </span><span class='line'><span class="nv">$ </span>git merge --no-ff hotfix-1.2.1
 </span><span class='line'>Merge made by recursive.
 </span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Из правила работы с ветками <code>hotfix</code> есть одно исключение: если ветка <code>release</code> уже существует, изменения ветки <code>hotfix</code> должны быть слиты обратно в ветку <code>release</code>, исключая при этом ветку <code>develop</code>. Слияние с веткой <code>release</code> приведет к тому, что после выпуска релиза, исправление будет также доступно и в ветке <code>develop</code>. (Если работа в <code>develop</code> требует немедленного исправления, и не может ждать пока будет выпущен релиз, можно безопасно занести исправление и в <code>develop</code>).</p>
 
 <p>В конце, удаляем ветку <code>hotfix</code>:</p>
 
-<figure class='code'><figcaption><span>Удаление ветки `hotfix`  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Удаление ветки <code>hotfix</code>  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git branch -d hotfix-1.2.1
 </span><span class='line'>Deleted branch hotfix-1.2.1 <span class="o">(</span>was abbe5d6<span class="o">)</span>.
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Подведем итоги</h2>
 
 <p>Предложенная модель в чем-то может показаться знакомой, и может сложиться ощущение, что автор изобрел велосипед. На самом деле, автор объединил существующие подходы, очевидные вещи в единую логичную системы и подвел черту. Данная модель не является серебрянной пулей, но она проста, наглядна и легка в применении. Модель отлично подходит для тех проектов, где используется Git. Также, данная модель помогает развить понимание ветвления и процесса выпуска релизов.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
+]]></content>
+  </entry>
   
-
-<span class="byline author vcard">Опубликовано <span class="fn">Алексей Плуталов</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2011-11-19T15:25:00+04:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/scm/'>scm</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/" data-via="demiazz" data-counturl="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/" >Твит</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Комментарии</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
-
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Последние записи</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2011/11/19/a-successfull-git-branching-model/">A successfull Git branching model</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-<section>
-  <h1>Последние твиты</h1>
-  <ul id="tweets">
-    <li class="loading">Обновление статуса...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("demiazz", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/demiazz" class="twitter-follow-button" data-width="208px" data-show-count="true">Читать @demiazz</a>
-  
-</section>
-
-
-
-<section class="googleplus">
-  <h1>
-    <a href="https://plus.google.com/115827334836103106481?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2011 - Алексей Плуталов -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'demiazzharbor';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/';
-        var disqus_url = 'http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>
