@@ -1,24 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Demiazz Harbor]]></title>
-  <link href="http://demiazz.github.com/atom.xml" rel="self"/>
-  <link href="http://demiazz.github.com/"/>
-  <updated>2011-11-19T18:52:00+04:00</updated>
-  <id>http://demiazz.github.com/</id>
-  <author>
-    <name><![CDATA[Алексей Плуталов]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A successfull Git branching model - Demiazz Harbor</title>
+  <meta name="author" content="Алексей Плуталов">
 
   
-  <entry>
-    <title type="html"><![CDATA[A successfull Git branching model]]></title>
-    <link href="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/"/>
-    <updated>2011-11-19T15:25:00+04:00</updated>
-    <id>http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model</id>
-    <content type="html"><![CDATA[<p>Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование более удобных и простых подходов к организации работы с исходным кодом, и его контролю.</p>
+  <meta name="description" content="Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Demiazz Harbor" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Demiazz Harbor</a></h1>
+  
+    <h2>Путанные гиковские мысли о веб-разработке, и вообще.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="Подписаться на RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:demiazz.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Поиск"/>
+  </fieldset>
+</form>
+<ul class="main-navigation">
+  <li><a href="/">Блог</a></li>
+  <li><a href="/blog/archives">Архив</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Successfull Git Branching Model</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-11-19T15:25:00+04:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Комментарии</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование более удобных и простых подходов к организации работы с исходным кодом, и его контролю.</p>
 
 <p>Еще в начале 2010 года, Vincent Driessen написал статью, в которой описал опыт использования Git, и обобщил свой опыт в виде модели использования веток при организации хранения кода под управлением Git.</p>
 
@@ -31,7 +104,7 @@
 
 <p>Предлагаемая модель управления исходным кодом, с использованием Git, успешно использовалась автором на всех его проектах (рабочих, и собственных). В статье не говорится о деталях проектов, а статья содержит лишь описание модели, которую автор с успехом применяет в повседневной разработке программного обеспечения.</p>
 
-<p><img class="center" src="http://demiazz.github.com/images/posts/a-successful-git-branching-model/1.png" title="Общая схема ветвления" ></p>
+<p><img class="center" src="/images/posts/a-successful-git-branching-model/1.png" title="Общая схема ветвления" ></p>
 
 <p>Данная модель позволяет использовать Git именно как инструмент для контроля версий, в контексте разработки программного обеспечения.</p>
 
@@ -51,7 +124,7 @@
 
 <p>При разработке с использованием Git, всегда создается единый центральный репозиторий. С технической точки зрения, этот репозиторий не является центральным, так как такого понятия в Git просто не существует. Разделение на центральный, и остальные репозитории является чисто логическим, и завязано на соглашениях в конкретном проекте и команде. Центральный репозиторий, с которым работает команда, обычно называется <code>origin</code>.</p>
 
-<p><img class="center" src="http://demiazz.github.com/images/posts/a-successful-git-branching-model/2.png" title="Пример &#34;централизованности&#34; Git" alt="Пример &#34;централизованности&#34; Git"></p>
+<p><img class="center" src="/images/posts/a-successful-git-branching-model/2.png" title="Пример &#34;централизованности&#34; Git" alt="Пример &#34;централизованности&#34; Git"></p>
 
 <p>Каждый разработчик используя <code>push</code> и <code>pull</code> может в двустороннем порядке обмениваться изменениями между своим локальным репозиторием и <code>origin</code>. Но, кроме двунаправленного обмена между указанными хранилищами, возможен также двусторонний обмен с хранилищами других разработчиков. Это может быть полезно, когда в проекте, над разработкой какого-либо функционала работают несколько разработчиков. Во время разработки, эти изменения не должны попадать в <code>origin</code>, но в то же время, должен происходить обмен изменениями, произведенными каждым из разработчиков. В этом случае, разработчики обмениваются изменениями между своими локальными репозиториями, не затрагивая код в <code>origin</code>.</p>
 
@@ -61,7 +134,7 @@
 
 <h2>Главные ветки</h2>
 
-<p><img class="right" src="http://demiazz.github.com/images/posts/a-successful-git-branching-model/3.png" title="&#34;Главные ветки&#34;" alt="&#34;Главные ветки&#34;"></p>
+<p><img class="right" src="/images/posts/a-successful-git-branching-model/3.png" title="&#34;Главные ветки&#34;" alt="&#34;Главные ветки&#34;"></p>
 
 <p>Представленная модель в значительной степени вдохновлена уже существующими моделями. Центральное хранилище предоставляет две ветки с бесконечным жизненным циклом:</p>
 
@@ -100,7 +173,7 @@
 
 <h3>Ветки <code>feature</code></h3>
 
-<p><img class="right" src="http://demiazz.github.com/images/posts/a-successful-git-branching-model/4.png" title="Ветки feature" ></p>
+<p><img class="right" src="/images/posts/a-successful-git-branching-model/4.png" title="Ветки feature" ></p>
 
 <p>Правила ветвления, слияния и именования:</p>
 
@@ -153,7 +226,7 @@
 
 <p>Использование флага <code>--no-ff</code> создает новый коммит, который содержит все изменения сливаемой ветки. Это позволяет избежать потери информации о существовании ветки, в которой велась разработка добавленного функционала. Для сравнения, взгляните на изображение ниже. Слева слияние с использованием флага <code>--no-ff</code>, справа без него:</p>
 
-<p><img class="center" src="http://demiazz.github.com/images/posts/a-successful-git-branching-model/5.png" title="Сравнение слияния веток с флагом --no-ff и без" ></p>
+<p><img class="center" src="/images/posts/a-successful-git-branching-model/5.png" title="Сравнение слияния веток с флагом --no-ff и без" ></p>
 
 <p>Как видно, если не указать флаг &#8211;no-ff, изменения которые делались в ветке <code>feature</code>, невозможно будет увидеть. Это чревато тем, что для того, чтобы увидеть все изменения сделанные в ветке <code>feature</code>, придется перечитать все сообщения журнала, и выбирать именно те коммиты, которые касаются интересующих изменений. Отмена изменений ветки <code>feature</code> также становится настоящей головной болью, тогда как <code>--no-ff</code> упрощает эту задачу, ведь откатить придется всего лишь один коммит. Хотя именно такое поведение более предпочтительною</p>
 
@@ -265,7 +338,7 @@
 
 <h3>Ветки <code>hotfix</code></h3>
 
-<p><img class="right" src="http://demiazz.github.com/images/posts/a-successful-git-branching-model/6.png" title="Ветки `hotfix`" ></p>
+<p><img class="right" src="/images/posts/a-successful-git-branching-model/6.png" title="Ветки `hotfix`" ></p>
 
 <p>Правила ветвления, слияния и именования:</p>
 
@@ -369,7 +442,172 @@
 <h2>Подведем итоги</h2>
 
 <p>Предложенная модель в чем-то может показаться знакомой, и может сложиться ощущение, что автор изобрел велосипед. На самом деле, автор объединил существующие подходы, очевидные вещи в единую логичную системы и подвел черту. Данная модель не является серебрянной пулей, но она проста, наглядна и легка в применении. Модель отлично подходит для тех проектов, где используется Git. Также, данная модель помогает развить понимание ветвления и процесса выпуска релизов.</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-</feed>
+
+<span class="byline author vcard">Опубликовано <span class="fn">Алексей Плуталов</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-11-19T15:25:00+04:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/" data-via="demiazz" data-counturl="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/" >Твит</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Комментарии</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Последние записи</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/11/19/a-successfull-git-branching-model/">A successfull Git branching model</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Последние твиты</h1>
+  <ul id="tweets">
+    <li class="loading">Обновление статуса...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("demiazz", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/demiazz" class="twitter-follow-button" data-width="208px" data-show-count="true">Читать @demiazz</a>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/115827334836103106481?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2011 - Алексей Плуталов -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'demiazzharbor';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/';
+        var disqus_url = 'http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

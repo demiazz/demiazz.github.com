@@ -1,11 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/</loc>
+        <lastmod>2011-11-19T18:51:59+04:00</lastmod>
+    </url>
+    <url>
         <loc>http://demiazz.github.com/</loc>
-        <lastmod>2011-11-15T02:27:37+04:00</lastmod>
+        <lastmod>2011-11-19T18:51:59+04:00</lastmod>
     </url>
     <url>
         <loc>http://demiazz.github.com/blog/archives/</loc>
-        <lastmod>2011-11-15T00:44:02+04:00</lastmod>
+        <lastmod>2011-11-19T18:51:59+04:00</lastmod>
     </url>
 </urlset>
