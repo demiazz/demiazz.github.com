@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: webkit | Demiazz Harbor]]></title>
+  <link href="http://demiazz.github.com/blog/categories/webkit/atom.xml" rel="self"/>
+  <link href="http://demiazz.github.com/"/>
+  <updated>2011-12-04T16:22:33+04:00</updated>
+  <id>http://demiazz.github.com/</id>
+  <author>
+    <name><![CDATA[Алексей Плуталов]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HTML5: Использование Notification API (Chrome)]]></title>
+    <link href="http://demiazz.github.com/blog/2011/12/04/html5-ispolzovaniie-notification-api-chrome/"/>
+    <updated>2011-12-04T14:35:00+04:00</updated>
+    <id>http://demiazz.github.com/blog/2011/12/04/html5-ispolzovaniie-notification-api-chrome</id>
+    <content type="html"><![CDATA[<p>HTML5 включает в себя на данный момент много интересных API, которые
+позволяют делать много интересных вещей. Одним из интересных API
+является Notification API.</p>
+
+<p>В данной статье я хочу рассмотреть реализацию данного API в браузерах на
+основе Chromium (Chromium, Google Chrome и вероятно другие его клоны).</p>
+
+<p>На данный момент спецификация находится в разработке.</p>
+
+<h2>Что это такое?</h2>
+
+<p>Notification API позволяет выводить уведомления пользователю на основе
+каких-то событий, либо пассивно (например, уведомления о новых
+сообщениях электронной почты, событиях в календаре или новых твитах).</p>
+
+<p>Чтобы использовать эти возможности, нужно всего четыре простых шага.</p>
+
+<h2>Шаг 1: Проверка поддержки</h2>
+
+<p>Чтобы проверить поддержку NotificationAPI в браузере, нужно проверить
+существование объекта <code>webkitNotification</code>. Данное имя выбрано на время
+разработки стандарта, и в окончательной спецификации будет заменено на
+<code>notifications()</code> функцию.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Проверка поддержки уведомлений в Webkit  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// можно использовать объект window</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Уведомления поддерживаются!&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Уведомления не поддерживаются в вашей версии</span>
+</span><span class='line'><span class="s2">браузера/операционной системы.&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Шаг 2: Создание уведомления</h2>
+
+<p>Существует два типа уведомлений, в зависимости от их контента: простой текст и HTML. Если ваше приложение использует оба типа уведомлений, вы можете создать функцию, которая будет создавать одно из них на основе передаваемых параметров.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание уведомления  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">createNotificationInstance</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">notificationType</span> <span class="o">==</span> <span class="s1">&#39;simple&#39;</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">createNotification</span><span class="p">(</span>
+</span><span class='line'>    <span class="s1">&#39;icon.png&#39;</span><span class="p">,</span> <span class="s1">&#39;Заголовок уведомления&#39;</span><span class="p">,</span> <span class="s1">&#39;Текст уведомления...&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">notificationType</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">createHTMLNotification</span><span class="p">(</span><span class="s1">&#39;http://someurl.com&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Шаг 3: Получение прав доступа у пользователя</h2>
+
+<p>Любой конструктор, который был продемонстрирован ранее, вызовет ошибку, если пользователь вручную не предоставил разрешение на показ уведомлений для сайта.</p>
+
+<p>Можно использовать <code>try-catch</code> конструкцию, для отлова исключения и его обработки, но более правильным путем будет использовать метод <code>checkPermission</code>.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Пример запроса прав доступа  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#show_button&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">checkPermission</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 0 is PERMISSION_ALLOWED&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// function defined in step 2</span>
+</span><span class='line'><span class="nx">createNotificationInstance</span><span class="p">({</span> <span class="nx">notificationType</span><span class="o">:</span> <span class="s1">&#39;html&#39;</span> <span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">requestPermission</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Если веб-приложение не имеет разрешение на показ уведомлений, то можно использовать метод <code>requestPermission</code>, который покажет следующий infobar:</p>
+
+<p><img class="center" src="/images/posts/htm5-ispolzovanie-notification-api-chrome/notifications_infobar.png" title="Запрос разрешения на показ уведомлений" ></p>
+
+<p>Важно помнить, что метод <code>requestPermission</code> работает только в обработчиках событий, вызванных действиями пользователей, такие как события мыши или клавиатуры. Это сделано, чтобы избежать нежелательных показов infobar'а. В данном примере, пользовательское действие - это клик по кнопке с id "show_button".</p>
+
+<p>Фрагмент приведенный выше никогда не будет работать, если пользователь явно не нажал кнопку или ссылку, которая вызывает <code>requestPermission</code> в каком-то месте кода.</p>
+
+<h2>Шаг 4: Привязка listener'ов и других действий</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Пример привязки показа уведомления  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#show_button&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">checkPermission</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 0 is PERMISSION_ALLOWED&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// function defined in step 2</span>
+</span><span class='line'><span class="nx">notification_test</span> <span class="o">=</span> <span class="nx">createNotificationInstance</span><span class="p">({</span><span class="nx">notificationType</span><span class="o">:</span> <span class="s1">&#39;html&#39;</span><span class="p">});</span>
+</span><span class='line'><span class="nx">notification_test</span><span class="p">.</span><span class="nx">ondisplay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="k">do</span> <span class="nx">something</span> <span class="p">...</span> <span class="p">};</span>
+</span><span class='line'><span class="nx">notification_test</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="k">do</span> <span class="nx">something</span> <span class="k">else</span> <span class="p">...</span> <span class="p">};</span>
+</span><span class='line'><span class="nx">notification_test</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">requestPermission</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Все эти события можно инкапсулировать в свой собственный класс, и сделать код чище, но это уже выходит за рамки статьи.</p>
+
+<h2>Ссылки</h2>
+
+<p>Здесь можете посмотреть дополнительные ссылки по теме:</p>
+
+<ul>
+<li><a href="http://www.html5rocks.com/en/tutorials/notifications/quick/">Оригинал статьи</a></li>
+<li><a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">Спецификация Notification API для Chromium</a></li>
+<li><a href="http://dev.w3.org/2006/webapi/WebNotifications/publish/">Обзор Notification API - W3C</a></li>
+<li><a href="http://dev.w3.org/2006/webapi/WebNotifications/publish/Notifications.html">Спецификация Notification API - W3C</a></li>
+<li><a href="http://dev.w3.org/2006/webapi/WebNotifications/publish/WebNotifications.html">Спецификация WebNotificationAPI - W3C</a></li>
+<li><a href="http://dev.w3.org/2009/dap/perms/FeaturePermissions.html#idl-NavigatorPermissions">Спецификация пользовательских разрешений</a></li>
+</ul>
+
+
+<p>В оригинале статьи можно также посмотреть примеры реализации в конце статьи.</p>
+
+<p>Немного ссылок по реализации уведомлений в Gecko 2.0:</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en/DOM/navigator.mozNotification">navigator.MozNotification</a></li>
+<li><a href="https://developer.mozilla.org/en/DOM/notification">notification</a></li>
+<li><a href="https://developer.mozilla.org/en/DOM/Displaying_notifications">Вывод уведомлений</a></li>
+</ul>
+
+
+<h2>Пара заметок</h2>
+
+<p>Префикс <code>webkit</code> намекает на то, что вполне возможно, что уведомления уже доступны в других webkit-based браузерах, например Safari. Возможности протестировать это у меня пока нет.</p>
+
+<p>Что касается других браузеров, то информации по реализации я пока не нашел, кроме как Mozilla Firefox. В будущем рассчитываю изучить этот момент, и найти информацию касательно планов разработки данной функциональности.</p>
+
+<p>И в качестве вывода, хочется сказать пару слов удивления, почему до сих пор, я не видел иcпользования уведомлений ни в одном крупном веб-приложении, кроме продуктов Google (такие как GMail например), либо в расширениях Google Chrome.</p>
+]]></content>
+  </entry>
+  
+</feed>
