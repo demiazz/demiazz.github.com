@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: development | Demiazz Harbor]]></title>
+  <link href="http://demiazz.github.com/blog/categories/development/atom.xml" rel="self"/>
+  <link href="http://demiazz.github.com/"/>
+  <updated>2012-06-10T18:32:08+04:00</updated>
+  <id>http://demiazz.github.com/</id>
+  <author>
+    <name><![CDATA[Алексей Плуталов]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A successfull Git branching model]]></title>
+    <link href="http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/"/>
+    <updated>2011-11-19T15:25:00+04:00</updated>
+    <id>http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model</id>
+    <content type="html"><![CDATA[<p>Система управления версиями Git заняла прочные позиции на рынке. Как и любая система управления версиями, Git подразумевает поиск и использование более удобных и простых подходов к организации работы с исходным кодом, и его контролю.</p>
+
+<p>Еще в начале 2010 года, Vincent Driessen написал статью, в которой описал опыт использования Git, и обобщил свой опыт в виде модели использования веток при организации хранения кода под управлением Git.</p>
+
+<p>Свою статью он опубликовал по в своем блоге, и ее можно почитать в оригинале: <a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a>.</p>
+
+<p>В данном посте, я приведу свой немного вольный перевод этой статьи.</p>
+
+<!-- more -->
+
+
+<p>Предлагаемая модель управления исходным кодом, с использованием Git, успешно использовалась автором на всех его проектах (рабочих, и собственных). В статье не говорится о деталях проектов, а статья содержит лишь описание модели, которую автор с успехом применяет в повседневной разработке программного обеспечения.</p>
+
+<p><img class="center" src="/images/posts/a-successful-git-branching-model/1.png" title="Общая схема ветвления" ></p>
+
+<p>Данная модель позволяет использовать Git именно как инструмент для контроля версий, в контексте разработки программного обеспечения.</p>
+
+<h2>Почему Git?</h2>
+
+<p>Данная статья не о Git как таковом, не о его преимуществах и недостатках. Эта статья лишь описывает одну из моделей разработки проекта, с применением особенностей Git.</p>
+
+<p>Модель предложенная автором статьи базируется на особенностях работы Git с ветками версий. Для сравнения, если рассматривать классические централизованные системы контроля версий, такие как CVS/SVN, то можно увидеть более консервативный и осторожный подход к использованию веток, а также их объединения. Данные операции являются тяжелыми и сложными, а в любой книге, посвященной данным системам, такие операции описываются в разделе предназначенном для опытных пользователей. Зачастую, операции создания и объединения веток в репозитории являются привилигированными операциями, и разработчики не имеют к ним доступа.</p>
+
+<p>Распределенные системы контроля версий, такие как Git, напротив, базируются на идее активного использования веток, их создания и объединения. Это позволило создать еще одну эффективную модель разработки, которая отлично подходит как для разработчика-одиночки, так и для командной разработки.</p>
+
+<p>Что касается самой модели, то это не панацей, не великое открытие. Это всего лишь набор процедур и подходов, придерживаясь которых можно сделать процесс разработки ПО управляемым. Конечно, чтобы данная модель принесла свои плоды, требуется четкое соблюдение процедуры не отдельными разработчиками, а каждым участником команды. Как показала практика, и опыт применения этой модели автором на реальных проектах, модель является весьма жизнеспособной и эффективной.</p>
+
+<h2>Децентрализованные, но централизованные</h2>
+
+<p>Несмотря на долгое существование Git на рынке, как и децентрализованных систем управления версиями, до cих пор имеет место путаница в связи с централизованностью.</p>
+
+<p>При разработке с использованием Git, всегда создается единый центральный репозиторий. С технической точки зрения, этот репозиторий не является центральным, так как такого понятия в Git просто не существует. Разделение на центральный, и остальные репозитории является чисто логическим, и завязано на соглашениях в конкретном проекте и команде. Центральный репозиторий, с которым работает команда, обычно называется <code>origin</code>.</p>
+
+<p><img class="center" src="/images/posts/a-successful-git-branching-model/2.png" title="Пример &#34;централизованности&#34; Git" alt="Пример &#34;централизованности&#34; Git"></p>
+
+<p>Каждый разработчик используя <code>push</code> и <code>pull</code> может в двустороннем порядке обмениваться изменениями между своим локальным репозиторием и <code>origin</code>. Но, кроме двунаправленного обмена между указанными хранилищами, возможен также двусторонний обмен с хранилищами других разработчиков. Это может быть полезно, когда в проекте, над разработкой какого-либо функционала работают несколько разработчиков. Во время разработки, эти изменения не должны попадать в <code>origin</code>, но в то же время, должен происходить обмен изменениями, произведенными каждым из разработчиков. В этом случае, разработчики обмениваются изменениями между своими локальными репозиториями, не затрагивая код в <code>origin</code>.</p>
+
+<p>На рисунке выше показан пример такой организации работы. В команде четыре разработчика. Каждый из них имеет доступ к <code>origin</code>, но помимо этого можно выделить три группы разработчиков, которые обмениваются изменениями только между собой: Алиса и Боб, Алиса и Дэвид, Клер и Дэвид.</p>
+
+<p>С технической стороны, это означает, что к примеру Алиса работает с двумя удаленными репозиториями: <code>origin</code> и <code>bob</code> (который принадлежит Бобу), и наоборот.</p>
+
+<h2>Главные ветки</h2>
+
+<p><img class="right" src="/images/posts/a-successful-git-branching-model/3.png" title="&#34;Главные ветки&#34;" alt="&#34;Главные ветки&#34;"></p>
+
+<p>Представленная модель в значительной степени вдохновлена уже существующими моделями. Центральное хранилище предоставляет две ветки с бесконечным жизненным циклом:</p>
+
+<ul>
+<li><code>master</code></li>
+<li><code>develop</code></li>
+</ul>
+
+
+<p>Ветка <code>master</code> в хранилище <code>origin</code> знакома каждому пользователю Git. Паралелльно с веткой <code>master</code>, существует другая ветка, называемая <code>develop</code>.</p>
+
+<p>Ветка <code>origin/master</code> мы рассматриваем как главную ветку, <code>HEAD</code> в которой, всегда указывает на <em>production ready</em> состояние.</p>
+
+<p>Ветка <code>origin/develop</code> рассматривается как главная ветка, в которой <code>HEAD</code> отражает состояние исходного кода, на момент последних изменений, подготовленных к следующему релизу. Некоторые называют эту ветку <em>integration branch</em>. Например, <code>HEAD</code> этой ветки используется для ночных сборок.</p>
+
+<p>Когда исходный код в ветке <code>develop</code> достигает стабильности, и содержит уровень функциональности близкий к желаемому, все изменения из <code>develop</code> должны быть внесены обратно в <code>master</code>, и отмечены тегом соответствующего релиза.</p>
+
+<p>Исходя из всего вышесказанного, можно заявить, что каждое внесение изменений в <code>master</code>, является очередным релизом по определению. Если строго подходить к этим рекомендациям, то теоретически, можно использовать <em>хук(hook)</em> к скрипту Git, для автоматической сборки и развертывания ПО на production-серверах, после каждого коммита в <code>master</code>.</p>
+
+<h2>Дополнительные ветки</h2>
+
+<p>В предлагаемой модели, помимо двух главных веток (<code>master</code> и <code>develop</code>), также используются вспомогательные ветки, которые позволяют облегчить ведение параллельной разработки членами команды, слежение за спектром разрабатываемого функционала проекта, подготовку к релизам, а также помогают в решении проблем, которые возникают в production коде. Но в отличии от главных веток, эти ветки имеют ограниченное время жизни, так как рано или поздно будут удалены.</p>
+
+<p>В качестве основных вспомогательных типов веток могут быть выделены:</p>
+
+<ul>
+<li>ветки <code>feature</code></li>
+<li>ветки <code>release</code></li>
+<li>ветки <code>hotfix</code></li>
+</ul>
+
+
+<p><em>(Оригинальные названия типов веток сохранены намерено, во измежание путаницы в переводе. Прим. перев.)</em></p>
+
+<p>Каждый из этих типов веток имеет конкретные цели и правила работы с ними. Для них строго определены те ветки, от которых можно произвести ветвление, и с какими ветками должны быть объединены. И опять же, во избежание введения в заблуждение, стоит оговориться, что эти ветки никак не являются "специальными" с технической точки зрения. Это обычные ветки Git. Их типизация зависит от правил, которые придерживаются при работе с ними.</p>
+
+<h3>Ветки <code>feature</code></h3>
+
+<p><img class="right" src="/images/posts/a-successful-git-branching-model/4.png" title="Ветки feature" ></p>
+
+<p>Правила ветвления, слияния и именования:</p>
+
+<ul>
+<li>Эти ветки наследуются только от <code>develop</code>;</li>
+<li>Эти ветки должны сливаться обратно с <code>develop</code>;</li>
+<li>Имя ветки может быть любым, кроме <code>master</code>, <code>develop</code>, <code>release-*</code>, <code>hotfix-*</code>.</li>
+</ul>
+
+
+<p>В ветках <code>feature</code> ведется разработка функционала для будущих релизов проекта. На момент начала работы над новым функционалом, релиз в котором он появится может быть и неизвестен. Суть таких веток в том, что разработка новых функциональных возможностей может вестись параллельно разработке основной части проекта, а по завершении реализации нового функционала он может быть внедрен в одном из следующих версий, либо отклонен (в случае, если функционал не удовлетворяет целям проекта, либо по каким-либо другим причинам). Такие ветки должны создаваться в локальных репозиториях разработчиков, но ни в коем случае не в <code>origin</code>.</p>
+
+<h4>Создание ветки <code>feature</code></h4>
+
+<p>Для создания ветки <code>feature</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание ветки <code>feature</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout -b myfeature develop
+</span><span class='line'>Switched to a new branch <span class="s2">&quot;myfeature&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>При создании ветки <code>feature</code> ветвление осуществляется от <code>develop</code>.</p>
+
+<h4>Конец жизненного цикла ветки <code>feature</code></h4>
+
+<p>Законченный функционал может быть объединен обратно с веткой <code>develop</code> для добавления его в следующий релиз:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Слияние <code>feature</code> ветки в <code>develop</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout develop
+</span><span class='line'>Switched to branch <span class="s1">&#39;develop&#39;</span>
+</span><span class='line'><span class="nv">$ </span>git merge --no-ff myfeature
+</span><span class='line'>Updating ea1b82a..05e9557
+</span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
+</span><span class='line'><span class="nv">$ </span>git branch -d myfeature
+</span><span class='line'>Deleted branch myfeature <span class="o">(</span>was 05e9557<span class="o">)</span>.
+</span><span class='line'><span class="nv">$ </span>git push origin develop
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Использование флага <code>--no-ff</code> создает новый коммит, который содержит все изменения сливаемой ветки. Это позволяет избежать потери информации о существовании ветки, в которой велась разработка добавленного функционала. Для сравнения, взгляните на изображение ниже. Слева слияние с использованием флага <code>--no-ff</code>, справа без него:</p>
+
+<p><img class="center" src="/images/posts/a-successful-git-branching-model/5.png" title="Сравнение слияния веток с флагом --no-ff и без" ></p>
+
+<p>Как видно, если не указать флаг --no-ff, изменения которые делались в ветке <code>feature</code>, невозможно будет увидеть. Это чревато тем, что для того, чтобы увидеть все изменения сделанные в ветке <code>feature</code>, придется перечитать все сообщения журнала, и выбирать именно те коммиты, которые касаются интересующих изменений. Отмена изменений ветки <code>feature</code> также становится настоящей головной болью, тогда как <code>--no-ff</code> упрощает эту задачу, ведь откатить придется всего лишь один коммит. Хотя именно такое поведение более предпочтительною</p>
+
+<p><em>Для установки такого поведения слияния по умолчанию, можно заставить Git использовать <code>--no-ff</code> по умолчанию, путем правки <code>.gitconfig</code>, и добавления следующих строк:</em></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Включение --no-ff по умолчанию  </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[alias]
+</span><span class='line'>merge=merge --no-ff</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Ветки <code>release</code></h3>
+
+<p>Правила ветвления, слияния и именования:</p>
+
+<ul>
+<li>Ветвление этих веток может быть произведено только от <code>develop</code>;</li>
+<li>Эти ветки должны сливаться обратно в <code>develop</code> и в <code>master</code>;</li>
+<li>Имя ветки должно быть формата <code>release-*</code>.</li>
+</ul>
+
+
+<p>Ветки <code>release</code> используются при подготовке к выпуску очередного релиза. Они позволяют в самую последнюю минуту расставить все точки над i. Кроме того, они позволяют вносить исправления мелких ошибок, и подготовить метаданные для релиза (номер версии, дата создания и т.д.). Делая все эти действия в ветках <code>release</code>, ветка <code>develop</code> останется чиста, и будет готова к добавлению нового кода, отвечающего непосредственно за расширение функционала разрабатываемого продукта.</p>
+
+<p>Создание ветки <code>release</code> производится в тот момент, когда состояние кода в <code>develop</code> отражает желаемое состояние нового релиза. По крайней мере, весь запланированный функционал ожидаемый в релизе, уже должен быть в <code>develop</code> ветке. Весь оставшийся код, отвечающий за расширение функционала, и отложенный на будущие релизы, должен ожидать, пока не будет выпущен релиз.</p>
+
+<p>Именно при создании <code>release</code> ветки, релиз получает номер версии, а не раньше. До этого момента, в ветке <code>develop</code> отражены изменения запланированные для выпуска в следующем релизе, но станет ли следующий релиз <code>0.3</code> или <code>0.1</code> неизвестно до создания ветки <code>release</code>. Присвоение релизу номера версии происходит в момент создания <code>release</code>. Присвоение релизу номера версии происходит в момент создания <code>release</code> ветки, и следует правилам нумерации, которые предложены в проекте.</p>
+
+<h4>Создание ветки <code>release</code></h4>
+
+<p>Ветки <code>release</code> создаются ветвлением от <code>develop</code>. Создание такой ветки покажем на примере. Пускай версия <code>1.1.5</code> - это текущий production релиз, и мы приближаемся к следующему большому релизу. Состояние ветки <code>develop</code> говорит о готовности к следующему релизу, и мы решили, что это будет <code>1.2</code>, а не <code>1.1.6</code> или <code>2.0</code>. Теперь, мы создаем ветку, и даем ей имя отображающее номер релиза:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание ветки <code>release</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout -b release-1.2 develop
+</span><span class='line'>Switched to a new branch <span class="s2">&quot;release-1.2&quot;</span>
+</span><span class='line'><span class="nv">$ </span>./bump-version.sh 1.2
+</span><span class='line'>Files modified successfully, version bumped to 1.2.
+</span><span class='line'><span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Bumped version number to 1.2&quot;</span>
+</span><span class='line'><span class="o">[</span>release-1.2 74d9424<span class="o">]</span> Bumped version number to 1.2
+</span><span class='line'>1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 1 deletions<span class="o">(</span>-<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>После создания новой ветки, и переключения на нее, мы изменяем везде номер версии на новый. К примеру это могут быть номера версии в исходных файлах проекта, в параметрах сборки executable файла, или еще что-то. В примере выше, это автоматизировано, и для этой цели используется вымышленный скрипт bump-version.sh, который производит нужные изменения в файлах рабочей директории, для отображения состояния новой версии. Это конечно может быть произведено и в ручную. В нашем примере, мы используем некий абстрактный проект. После этого заносим изменения в RB.</p>
+
+<p>После создания новой ветки, и переключения на нее, мы изменяем везде номер версии на новый. К примеру, это могут быть номера версии в исходных файлах проекта, в параметрах сборки выполняемого файла, или еще что-то. В примере выше, это автоматизировано, и для этой цели используется вымышленный скрипт <code>bump-version.sh</code>, который производит нудные изменения в файлах рабочей директории, для отображения состояния новой версии. Это конечно может быть произведено и в ручную. В нашем примере, мы используем некий абстрактный проект. После этого заносим изменения в ветку <code>release</code>.</p>
+
+<p>Этот процесс очень похож на выпуск так называемой бета-версии, когда производится только тестирование продукта, поиск и исправление ошибок, но уже никакой новый функционал не добавляется.</p>
+
+<h4>Закрытие ветки <code>release</code> и выпуск релиза</h4>
+
+<p>Когда состояние кода в ветке <code>release</code> готово к выпуску релиза, необходимо провести некоторые действия. Во-первых, нужно влить ветку <code>release</code> обратно в <code>master</code> (напомним еще раз, что каждый коммит в <code>master</code> - это новый релиз по определению). Далее, сделанный коммит следует отметить тегом, отображающим номер версии, что поможет в будущем легче ориентироваться в релизах. И наконец, изменения сделанные в ветке <code>release</code> должны быть слиты обратно в <code>develop</code>, так чтобы будущее релизы содержали все исправления, сделанные в процессе подготовки релиза.</p>
+
+<p>Первые два шага в Git:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Выпуск релиза  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout master
+</span><span class='line'>Switched to branch <span class="s1">&#39;master&#39;</span>
+</span><span class='line'><span class="nv">$ </span>git merge --no-ff release-1.2
+</span><span class='line'>Merge made by recursive.
+</span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
+</span><span class='line'><span class="nv">$ </span>git tag -a 1.2
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Релиз выпущен, и помечен для будущего использования.</p>
+
+<p>Для того, чтобы сохранить изменения сделаные в ветке <code>release</code>, нужно слить их обратно в <code>develop</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Слияние <code>release</code> ветки в <code>develop</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout develop
+</span><span class='line'>Switched to branch <span class="s1">&#39;develop&#39;</span>
+</span><span class='line'><span class="nv">$ </span>git merge --no-ff release-1.2
+</span><span class='line'>Merge made by recursive.
+</span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Этот шаг может привести к конфликтам во время слияния. Если такое произойдет, то следует исправить конфликты, и зафиксировать изменения.</p>
+
+<p>Теперь релиз полностью выпущен, и <code>release</code> ветка может быть удалена, так как она нам больше не нужна:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Удаление ветки <code>release</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git branch -d release-1.2
+</span><span class='line'>Deleted branch release-1.2 <span class="o">(</span>was ff452fe<span class="o">)</span>.
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Ветки <code>hotfix</code></h3>
+
+<p><img class="right /images/posts/a-successful-git-branching-model/6.png Ветки" src="<code>hotfix</code>"></p>
+
+<p>Правила ветвления, слияния и именования:</p>
+
+<ul>
+<li>Ветвление этих веток может быть произведено только от <code>master</code>;</li>
+<li>Эти ветки должны объединяться обратно с <code>develop</code> и <code>master</code>;</li>
+<li>Имя ветки должно быть формата <code>hotfix-*</code>.</li>
+</ul>
+
+
+<p>Ветки <code>hotfix</code> очень похожи на ветки <code>release</code> в том, что они также предназначены для подготовки к новым релизам, хотя и не запланированным. Они возникают, из-за необходимости действовать сразу же после обнаружения серьезной ошибки в production коде. Когда критическая ошибка в production версии должна быть разрешена немедленно, <code>hotfix</code> может быть создана ветвлением от коммита в ветке <code>master</code> с меткой текущей production версии.</p>
+
+<p>Использование такого перехода заключается в том, что члены команды смогут дальше продолжать решение поставленных задач (в ветке <code>develop</code>), в то время как ответственный разработчик будет готовить исправление ошибки в production версии.</p>
+
+<h4>Создание ветки <code>hotfix</code></h4>
+
+<p>Ветка <code>hotfix</code> создается ветвлением от ветки <code>master</code>. Рассмотрим небольшой пример. Допустим, версия <code>1.2</code> является текущей production версией, которая сейчас используется и вызывает проблемы из-за нескольких досадных и неприятных ошибок в коде. Изменения в ветке <code>develop</code> пока нестабильные, чтобы делать новый релиз. В таком случае, мы ветвлением от <code>master</code> создает ветку <code>hotfix</code> и начинаем исправлять ошибку в рамках этой ветки:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Создание ветки <code>hotfix</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout -b hotfix-1.2.1 master
+</span><span class='line'>Switched to a new branch <span class="s2">&quot;hotfix-1.2.1&quot;</span>
+</span><span class='line'><span class="nv">$ </span>./bump-version.sh 1.2.1
+</span><span class='line'>Files modified successfully, version bumped to 1.2.1.
+</span><span class='line'><span class="nv">$ </span>git commit -a -m <span class="s2">&quot;Bumped version number to 1.2.1&quot;</span>
+</span><span class='line'><span class="o">[</span>hotfix-1.2.1 41e61bb<span class="o">]</span> Bumped version number to 1.2.1
+</span><span class='line'>1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 1 deletions<span class="o">(</span>-<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Не забывайте применить изменения версии после ответвления!</p>
+
+<p>После, исправляем ошибку и фиксируем исправление одним или несколькими коммитами.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Фиксация изменений  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git commit -m <span class="s2">&quot;Fixed severe production problem&quot;</span>
+</span><span class='line'><span class="o">[</span>hotfix-1.2.1 abbe5d6<span class="o">]</span> Fixed severe production problem
+</span><span class='line'>5 files changed, 32 insertions<span class="o">(</span>+<span class="o">)</span>, 17 deletions<span class="o">(</span>-<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>Закрытие ветки <code>hotfix</code> и выпуск внеочередного релиза</h4>
+
+<p>После исправления ошибки, нужно слить ветку <code>hotfix</code> обратно в ветку <code>master</code>, но также требуется объединить эту ветку обратно с <code>develop</code>, с тем, чтобы гарантировать, что исправления будут доступны и в последующих релизах. Эти действия аналогичны закрытию ветки <code>release</code>.</p>
+
+<p>Обновим ветку <code>master</code> и тег релиза.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Обновление <code>master</code> и тега релиза  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout master
+</span><span class='line'>Switched to branch <span class="s1">&#39;master&#39;</span>
+</span><span class='line'><span class="nv">$ </span>git merge --no-ff hotfix-1.2.1
+</span><span class='line'>Merge made by recursive.
+</span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
+</span><span class='line'><span class="nv">$ </span>git tag -a 1.2.1
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Затем, занесем исправление в ветку <code>develop</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Занесение изменений в ветку <code>develop</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git checkout develop
+</span><span class='line'>Switched to branch <span class="s1">&#39;develop&#39;</span>
+</span><span class='line'><span class="nv">$ </span>git merge --no-ff hotfix-1.2.1
+</span><span class='line'>Merge made by recursive.
+</span><span class='line'><span class="o">(</span>Summary of changes<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Из правила работы с ветками <code>hotfix</code> есть одно исключение: если ветка <code>release</code> уже существует, изменения ветки <code>hotfix</code> должны быть слиты обратно в ветку <code>release</code>, исключая при этом ветку <code>develop</code>. Слияние с веткой <code>release</code> приведет к тому, что после выпуска релиза, исправление будет также доступно и в ветке <code>develop</code>. (Если работа в <code>develop</code> требует немедленного исправления, и не может ждать пока будет выпущен релиз, можно безопасно занести исправление и в <code>develop</code>).</p>
+
+<p>В конце, удаляем ветку <code>hotfix</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Удаление ветки <code>hotfix</code>  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git branch -d hotfix-1.2.1
+</span><span class='line'>Deleted branch hotfix-1.2.1 <span class="o">(</span>was abbe5d6<span class="o">)</span>.
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Подведем итоги</h2>
+
+<p>Предложенная модель в чем-то может показаться знакомой, и может сложиться ощущение, что автор изобрел велосипед. На самом деле, автор объединил существующие подходы, очевидные вещи в единую логичную системы и подвел черту. Данная модель не является серебрянной пулей, но она проста, наглядна и легка в применении. Модель отлично подходит для тех проектов, где используется Git. Также, данная модель помогает развить понимание ветвления и процесса выпуска релизов.</p>
+]]></content>
+  </entry>
+  
+</feed>

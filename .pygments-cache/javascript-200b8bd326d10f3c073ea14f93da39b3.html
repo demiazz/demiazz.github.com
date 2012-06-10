@@ -1,0 +1,10 @@
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">createNotificationInstance</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">notificationType</span> <span class="o">==</span> <span class="s1">&#39;simple&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">createNotification</span><span class="p">(</span>
+        <span class="s1">&#39;icon.png&#39;</span><span class="p">,</span> <span class="s1">&#39;Заголовок уведомления&#39;</span><span class="p">,</span> <span class="s1">&#39;Текст уведомления...&#39;</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">notificationType</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">webkitNotifications</span><span class="p">.</span><span class="nx">createHTMLNotification</span><span class="p">(</span><span class="s1">&#39;http://someurl.com&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</div>

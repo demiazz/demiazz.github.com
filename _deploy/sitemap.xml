@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://demiazz.github.com/blog/2011/11/19/a-successfull-git-branching-model/</loc>
+        <lastmod>2012-06-10T17:53:38+04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://demiazz.github.com/blog/2011/12/01/kratkii-otchiet-s-html5-camp/</loc>
+        <lastmod>2012-06-10T17:53:38+04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://demiazz.github.com/blog/2011/12/04/html5-ispolzovaniie-notification-api-chrome/
+        </loc>
+        <lastmod>2012-06-10T18:04:54+04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://demiazz.github.com/blog/2012/06/10/shared-git-riepozitorii/</loc>
+        <lastmod>2012-06-10T18:30:46+04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://demiazz.github.com/blog/archives/</loc>
+        <lastmod>2012-06-10T18:30:46+04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://demiazz.github.com/</loc>
+        <lastmod>2012-06-10T18:30:46+04:00</lastmod>
+    </url>
+</urlset>
